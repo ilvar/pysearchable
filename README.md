@@ -93,3 +93,4 @@ _TODO_
  * Add benchmarks (compare with unencrypted ES)
  * Better module layout
  * setup.py
+ * Provide `iv` instead of randomizing
