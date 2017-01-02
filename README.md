@@ -83,8 +83,13 @@ python test_es.py
  * Each tokenized field adds a roundtrip to ES, so indexing should be slower
  * It imposes additional restrictions and may lose some precision in OPE
 
+## Benchmarks
+
+_TODO_
+
 ## TODO
 
  * Remove redundant ES assumptions (hosts, ports, creds, index/analyzer names etc)
+ * Add benchmarks (compare with unencrypted ES)
  * Better module layout
  * setup.py
