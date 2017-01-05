@@ -85,12 +85,21 @@ python test_es.py
 
 ## Benchmarks
 
-_TODO_
+```
+python -m benchmarks.es
+```
+
+On my machine:
+
+```
+Encrypted 0:00:33.463092
+Not encrypted 0:00:09.307312
+```
+
+I.e. ~4 times slowdown when inserting single documents.
 
 ## TODO
 
  * Remove redundant ES assumptions (hosts, ports, creds, index/analyzer names etc)
- * Add benchmarks (compare with unencrypted ES)
- * Better module layout
  * setup.py
  * Provide `iv` instead of randomizing

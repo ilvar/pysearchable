@@ -1,8 +1,7 @@
+import datetime
 import unittest
 
-import datetime
-
-from searchable_cipher_es import SearchableCipherElasticsearch
+from pysearchable.es import SearchableCipherElasticsearch
 
 
 class TestEncryption(unittest.TestCase):

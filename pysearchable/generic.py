@@ -5,7 +5,7 @@ import base64
 from pyope.ope import OPE, ValueRange
 from Crypto.Cipher import AES
 from Crypto import Random
-from elasticsearch import Elasticsearch
+from es import Elasticsearch
 
 KEY = b'key goes here!!!'  # 16 bytes
 INDEX_NAME = "test-index"

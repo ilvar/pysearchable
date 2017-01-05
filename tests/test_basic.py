@@ -1,8 +1,7 @@
+import datetime
 import unittest
 
-import datetime
-
-from searchable_cipher import SearchableCipher
+from pysearchable.generic import SearchableCipher
 
 
 class TestEncryption(unittest.TestCase):

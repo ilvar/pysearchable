@@ -1,9 +1,9 @@
 from elasticsearch import Elasticsearch
 
-import searchable_cipher
+from pysearchable import generic
 
 
-class SearchableCipherElasticsearch(searchable_cipher.SearchableCipher):
+class SearchableCipherElasticsearch(generic.SearchableCipher):
     ANALYZER_SETTINGS = {
         "settings": {
             "analysis": {
@@ -47,7 +47,7 @@ class SearchableCipherElasticsearch(searchable_cipher.SearchableCipher):
         analysis = self.es.indices.analyze(index=self.index_name, body=str, params={"analyzer": "my_analyzer"})
         return [t["token"] for t in analysis["tokens"]]
 
-    def index_doc(self, doc, raw_fields, fulltext_fields, date_fields, time_fields, int_fields, allow_unencrypted=False):
+    def index_doc(self, doc, raw_fields, fulltext_fields, date_fields, time_fields, int_fields, obj_id=1, allow_unencrypted=False):
         """
 
         :param doc: dics
@@ -79,7 +79,7 @@ class SearchableCipherElasticsearch(searchable_cipher.SearchableCipher):
             for f in fields:
                 encrypted_doc[f] = handler(doc[f])
 
-        return self.es.index(index=self.index_name, doc_type='tweet', id=1, body=encrypted_doc)
+        return self.es.index(index=self.index_name, doc_type='tweet', id=obj_id, body=encrypted_doc)
 
     def search(self, query):
         """
