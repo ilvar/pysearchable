@@ -18,7 +18,7 @@ class TestEncryption(unittest.TestCase):
     field_params = ["author"], ["text"], ["date"], ["time"], ["value"]
 
     # One time indexing
-    sce.index_doc(doc, *field_params)
+    sce.index_doc(doc, *field_params, doc_type="test", obj_id=1)
     sce.es.indices.refresh(sce.index_name)
 
     def search_total(self, query):

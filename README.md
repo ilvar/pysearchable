@@ -62,13 +62,13 @@ self.sce.search({"range": {"value": {"gt": self.sce.encrypt_int(1233)}}})
 To run generic tests:
 
 ```
-python test_basic.py
+python tests/test_basic.py
 ```
 
 To run Elasticsearch tests you need to install and run Elasticsearch. Then:
 
 ```
-python test_es.py
+python tests/test_es.py
 ```
 
 ## Advantages
@@ -92,8 +92,10 @@ python -m benchmarks.es
 On my machine:
 
 ```
-Encrypted 0:00:33.463092
-Not encrypted 0:00:09.307312
+Not encrypted single 0:00:03.808277
+Encrypted single 0:00:23.540614
+Not encrypted bulk 0:00:00.356239
+Encrypted bulk 0:00:18.666775
 ```
 
 I.e. ~4 times slowdown when inserting single documents.
