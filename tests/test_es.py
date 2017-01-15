@@ -25,13 +25,24 @@ class TestEncryption(unittest.TestCase):
         result = self.sce.search(query)
         return result["hits"]["total"]
 
+    def encrypt_phrase(self, phrase):
+        return " ".join(map(self.sce.encrypt_token, phrase.split(" ")))
+
     def test_author(self):
         self.assertFalse(self.search_total({"match": {"author": self.sce.encrypt_token("Kim")}}))
         self.assertTrue(self.search_total({"match": {"author": self.sce.encrypt_token("Kim Chong Un")}}))
 
     def test_text(self):
+        print "qui", self.sce.encrypt_token("qui")
+
         self.assertFalse(self.search_total({"match": {"text": self.sce.encrypt_token("foxie")}}))
         self.assertTrue(self.search_total({"match": {"text": self.sce.encrypt_token("qui")}}))
+
+    def test_text_phrase(self):
+        print "brown fox", self.encrypt_phrase("brown fox")
+
+        self.assertFalse(self.search_total({"match_phrase": {"text": self.encrypt_phrase("The dog")}}))
+        self.assertTrue(self.search_total({"match_phrase": {"text": self.encrypt_phrase("brown fox")}}))
 
     def test_date(self):
         low = self.sce.encrypt_date(datetime.date(2009, 12, 31))

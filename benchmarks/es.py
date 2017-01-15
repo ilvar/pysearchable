@@ -32,10 +32,10 @@ class BenchmarkES(object):
         self.encrypted_es.es.indices.refresh(self.encrypted_es.index_name)
 
     def index_encrypted_bulk(self):
-        for i in range(0, 20):
+        for i in range(0, 5):
             bulk_docs = []
-            for j in range(0, 50):
-                obj_id = i * 50 + j
+            for j in range(0, 200):
+                obj_id = i * 200 + j
                 bulk_docs.append(
                     ("encrypted_bulk", obj_id, self.doc.copy())
                 )
@@ -89,17 +89,17 @@ if __name__ == '__main__':
         pass
 
     begin = datetime.datetime.now()
-    bes.index_unencrypted()
-    print "Not encrypted single", datetime.datetime.now() - begin
-
-    begin = datetime.datetime.now()
-    bes.index_encrypted()
-    print "Encrypted single", datetime.datetime.now() - begin
-
-    begin = datetime.datetime.now()
     bes.index_unencrypted_bulk()
     print "Not encrypted bulk", datetime.datetime.now() - begin
 
     begin = datetime.datetime.now()
     bes.index_encrypted_bulk()
     print "Encrypted bulk", datetime.datetime.now() - begin
+
+    begin = datetime.datetime.now()
+    bes.index_unencrypted()
+    print "Not encrypted single", datetime.datetime.now() - begin
+
+    begin = datetime.datetime.now()
+    bes.index_encrypted()
+    print "Encrypted single", datetime.datetime.now() - begin
